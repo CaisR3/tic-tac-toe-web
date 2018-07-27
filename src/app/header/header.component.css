@@ -1,0 +1,23 @@
+.toolbar {
+  background-color:black;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+#status {
+  margin-left: 5%;
+}
+
+#cash-balance {
+  float: right;
+  margin-right: 20px;
+  font-size: 28px;
+}
+
+#me {
+  position: relative;
+  top: 8px;
+  font-size: 32px;
+}

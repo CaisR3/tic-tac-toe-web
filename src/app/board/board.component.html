@@ -1,0 +1,110 @@
+<header></header>
+
+<div class="container text-center">
+
+  <h1 id="main" title="Go back to main menu">TIC TAC CORDA</h1>
+
+<div>
+  <!-- CHOOSE GAME -->
+  <div id="chooseGame" class="box">
+    <p1>Welcome!</p1>
+    <br>
+    <p2 style="font-size:0.7em;">Game mode:</p2>
+    <br>
+    <p4 title="Play vs. Computer" id="vsComp">
+      <i class="far fa-user"></i>
+      <i class="fas fa-laptop"></i>
+    </p4>
+    <p4 title="Two player mode" id="2players">
+      <i class="far fa-user"></i>
+      <i class="far fa-user"></i>
+    </p4>
+  </div>
+
+  <div id="peers" class="box">
+    <p1>Select opponent</p1>
+    <app-peers></app-peers>
+  </div>
+
+  <!-- CHOOSE PLAYER -->
+  <div id="choosePlayer" class="box">
+    <p1>Welcome!</p1>
+    <br>
+    <p2 style="font-size:0.66em;">Choose your player:</p2>
+    <br>
+    <p3 id="playerX" (click)="setX(true)">X</p3>
+    <p3 id="player0" (click)="setX(false)">0</p3>
+  </div>
+
+  <!-- GAME BOX -->
+  <div>
+    <table id="gameBox">
+      <tr>
+        <td id="box0" class="box bottom right tic" (click)=play(0,0)>{{board[0][0]}}</td>
+        <td id="box1" class="box bottom right tic" (click)=play(0,1)>{{board[0][1]}}</td>
+        <td id="box2" class="box bottom tic" (click)=play(0,2)>{{board[0][2]}}</td>
+      </tr>
+      <tr>
+        <td id="box3" class="box bottom right tic" (click)=play(1,0)>{{board[1][0]}}</td>
+        <td id="box4" class="box bottom right tic" (click)=play(1,1)>{{board[1][1]}}</td>
+        <td id="box5" class="box bottom tic" (click)=play(1,2)>{{board[1][2]}}</td>
+      </tr>
+      <tr>
+        <td id="box6" class="box right tic" (click)=play(2,0)>{{board[2][0]}}</td>
+        <td id="box7" class="box right tic" (click)=play(2,1)>{{board[2][1]}}</td>
+        <td id="box8" class="box tic" (click)=play(2,2)>{{board[2][2]}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- YOU WIN MESSAGE BOX -->
+  <div id="winBox" class="box">
+    <p1>Congratulations!</p1>
+    <br>
+    <p2>You win!</p2>
+    <br>
+    <a style="font-size: 0.44em;" class="btn" (click)="reset()">Play again</a>
+  </div>
+
+  <!-- COMPUTER WINS MESSAGE BOX -->
+  <div id="loseBox" class="box">
+    <p1>Computer wins!</p1>
+    <br>
+    <p4 style="font-size: 0.66em;">Better luck next time</p4>
+    <br>
+    <a style="font-size: 0.44em;" class="btn" (click)="reset()">Play again</a>
+  </div>
+
+  <!-- PLAYER X WINS BOX -->
+  <div id="playerXwins" *ngIf="game.complete">
+    <div *ngIf="game.winner; else draw">
+      <div *ngIf="game.winner.includes(this.gameService.me); else loser">
+       <h1 style="font-size: 40px">Congratulations!</h1>
+      </div>
+      <ng-template #loser>
+        <h1 style="font-size: 40px">Unlucky!</h1>
+      </ng-template>
+      <br>
+      <p5 style="font-size: 30px">Player </p5>
+      <p11 class="ex" style="font-size: 30px">{{game.winner}}</p11>
+      <p5 style="font-size: 30px;"> wins!</p5>
+      <br>
+    </div>
+    <ng-template #draw>
+      <h1 style="font-size: 40px">Draw!</h1>
+    </ng-template>
+    <a style="font-size: 30px;" class="btn" (click)="reset()">Play again</a>
+  </div>
+</div>
+
+<div id="existing">
+  <app-existing-games></app-existing-games>
+</div>
+
+<div id="turn" *ngIf="game">
+  <label>Current turn: {{game.activePlayer}}</label>
+</div>
+
+
+
+</div>

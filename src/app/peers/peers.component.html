@@ -1,0 +1,23 @@
+  <table class="table box">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Locality</th>
+        <th>Country</th>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let peer of peers">
+        <tr (click)="setOpponent(peer)" class="clickable peer">
+          <td>
+            <span>{{peer.name}}</span>
+          </td>
+          <td>
+            <span>{{peer.locality}}</span>
+          </td>
+          <td>
+            <span>{{peer.country}}</span>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>

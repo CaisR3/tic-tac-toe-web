@@ -1,0 +1,30 @@
+<div id="games">
+  <h4>Existing games</h4>
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Player1</th>
+        <th>Player2</th>
+        <th>Complete</th>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let game of games">
+        <tr (click)=loadExisting(game.id) class="clickable existingGame">
+          <td>
+            <a>{{game.id}}</a>
+          </td>
+          <td>
+            <a>{{game.player1}}</a>
+          </td>
+          <td>
+            <a>{{game.player2}}</a>
+          </td>
+          <td>
+            <a>{{game.complete}}</a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
