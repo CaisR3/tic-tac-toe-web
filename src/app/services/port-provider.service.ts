@@ -7,7 +7,7 @@ export class PortProviderService {
   constructor() {
     if (location.port !== "4200") {
       //this.current = location.host;
-      this.current = "http://13.73.145.0:8080"
+      this.current = "http://" + location.host;
     } else {
       if (location.pathname.includes("other")) {
         this.current = "http://localhost:10010";

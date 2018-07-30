@@ -12,7 +12,6 @@ import { Peer } from "../peer";
 
 @Injectable()
 export class GameService implements OnInit {
-  private headers = new Headers({ "Content-Type": "application/json" });
   public me: string;
   public id: string;
 
@@ -64,7 +63,7 @@ export class GameService implements OnInit {
       .toPromise()
       .then(
         res => new Tx().deserialize(res).txResponse,
-        err => this.handleError(err)
+        err => this.handleError(err, true)
       );
   }
 
@@ -77,7 +76,7 @@ export class GameService implements OnInit {
       .toPromise()
       .then(
         () => this.refreshService.confirmMission(),
-        err => this.handleError(err)
+        err => this.handleError(err, true)
       );
   }
 
@@ -125,10 +124,10 @@ export class GameService implements OnInit {
     return games;
   }
 
-  private handleError(response: Response): Promise<any> {
+  private handleError(response: Response, refresh: boolean = false): Promise<any> {
     /*this.dialog.open(ErrorFeedbackComponent,
       { data: { error: response.text() } });*/
-    this.refreshService.confirmMission();
+    if(refresh) { this.refreshService.confirmMission(); }
     return Promise.reject(response);
   }
 }
